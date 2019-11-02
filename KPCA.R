@@ -1,0 +1,28 @@
+BCC <- read.csv(file="desktop/BCC.csv", sep=",")
+library(kernlab)
+library(rgl)
+test<-as.matrix(BCC[,2:4])
+gau=kpca(test,kernel="rbfdot",sigma=1,features=2)
+lap=kpca(test,kernel="laplacedot",sigma=1,features=2)
+bessel=kpca(test,kernel="besseldot",sigma=1,features=2)
+anova=kpca(test,kernel="anovadot",sigma=1,features=2)
+plot3d(rotated(gau),col=as.integer(test),xlab = "Gaussian",ylab = "",zlab = "")
+plot3d(rotated(lap),col=as.integer(test),xlab = "Laplacian",ylab = "",zlab = "")
+plot3d(rotated(bessel),col=as.integer(test),xlab = "Bessel",ylab = "",zlab = "")
+plot3d(rotated(anova),col=as.integer(test),xlab = "Anova",ylab = "",zlab = "")
+
+
+library(readr)
+BCD<-read_csv("desktop/BCD.csv")
+colnames(BCD) <- c("id", "diagnosis","radius_mean","texture_mean","perimeter_mean","area_mean","smoothness_mean","compactness_mean","concavity_mean","concave points_mean","symmetry_mean","fractal_dimension_mean","radius_se","texture_se","perimeter_se","area_se","smoothness_se","compactness_se","concavity_se","concave points_se","symmetry_se","fractal_dimension_se","radius_worst","texture_worst","perimeter_worst","area_worst","smoothness_worst","compactness_worst","concavity_worst","concave points_worst","symmetry_worst","fractal_dimension_worst")
+train<-as.matrix(BCD[,3:6])
+gau=kpca(train,kernel="rbfdot",sigma=1,features=2)
+lap=kpca(train,kernel="laplacedot",sigma=1,features=2)
+bessel=kpca(train,kernel="besseldot",sigma=1,features=2)
+anova=kpca(train,kernel="anovadot",sigma=1,features=2)
+plot3d(rotated(gau),col=as.integer(train),xlab = "Gaussian",ylab = "",zlab = "")
+plot3d(rotated(lap),col=as.integer(train),xlab = "Laplacian",ylab = "",zlab = "")
+plot3d(rotated(bessel),col=as.integer(train),xlab = "Bessel",ylab = "",zlab = "")
+plot3d(rotated(anova),col=as.integer(train),xlab = "Anova",ylab = "",zlab = "")
+
+
